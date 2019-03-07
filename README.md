@@ -20,25 +20,39 @@ NO!NO!NO!容器化比较符合撸主口味
 
 ## 需要修改哪些
 因为V2RAY属于链式协议栈，大家可以根据自己小鸡情况自由编排，我这里只放出了最简单通用的配置。
-最简单场景就是 
-默认配置的UUID是：65b30af2-6694-4a4c-9677-54bf7b2b8d10,自己[生成UUID](https://www.uuidgenerator.net/)替换
+
 GCP（服务端）
-修改 server/config.json 中自己的V2RAY的上游服务器信息 用8082逻辑上混淆概率更高一点，至于加密大家可以根据自己需求配置
-本地（客户端） 设置socks代理 1080端口 HTTP代理1082端口
-修改 client/config.json 
+
+配置 server/config.json
+
+用8082逻辑上混淆概率更高一点，至于加密大家可以根据自己需求配置
+
+本地（客户端） client/config.json 
+
+设置socks代理 1080端口 HTTP代理1082端口
+
+默认配置的UUID是：65b30af2-6694-4a4c-9677-54bf7b2b8d10,自己[生成UUID](https://www.uuidgenerator.net/)替换
+
 
 ## 怎么使用
+- 修改 docker-compose.yml 中 cloudflare 自己的信息
+- 运行脚本
 ```bash
+## build docker image
 docker-compose build
+## exec at server side
 docker-compose up -d
+## exec at client side
+docker run --it -d v2ray/official -v ./client/coinfig.json:/etc/v2ray/config.json v2ray
 ```
 ## 其他
-如果build Caddy时候出现  error initializing submodules: usage: git submodule
+如果build Caddy时候出现  ERROR: error initializing submodules: usage: git submodule [--quiet] add [-b <branch>] [-f|--force] [--name <name>] [--reference <repository>] [--] <repository> [<path>]
+
 主要是因为 Docker 会在Clone以后执行  git submodule update --init --recursive --depth=1 
 但是--depth这个参数在git 2.10之前并不支持。 
 我的是Centos解决办法如下
 
 ```bash
-sudo yum install https://centos7.iuscommunity.org/ius-release.rpm
+sudo yum install -y https://centos7.iuscommunity.org/ius-release.rpm
 sudo yum swap git git2u
 ```
