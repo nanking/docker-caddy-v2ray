@@ -1,0 +1,13 @@
+your.domain
+{
+  log ./caddy.log
+  tls {
+    dns cloudflare
+  }
+  root /srv
+  gzip
+  proxy /ws v2ray:8082 {
+    websocket
+    header_upstream -Origin
+  }
+}

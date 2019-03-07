@@ -1,0 +1,26 @@
+version: '3'
+services:
+  v2ray:
+    restart: always
+    image: v2ray/official
+    container_name: v2ray
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./v2ray/config.json:/etc/v2ray/config.json
+      - ./v2ray:/var/log/v2ray
+  caddy:
+    image: caddy
+    build:
+      context: github.com/abiosoft/caddy-docker.git
+      args:
+        - plugins=git,cloudflare
+    container_name: caddy
+    ports:
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - ./caddy/:/root/.caddy/
+    environment:
+      CLOUDFLARE_EMAIL: your cloudflare email
+      CLOUDFLARE_API_KEY: your cloudflare api key
