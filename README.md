@@ -43,7 +43,7 @@ docker-compose build
 ## exec at server side
 docker-compose up -d
 ## exec at client side
-docker run -it --rm  -v $PWD/client:/etc/v2ray v2ray/official
+docker run -it --rm  -d -v $PWD/client:/etc/v2ray v2ray/official
 ```
 ## 其他
 如果build Caddy时候出现  ERROR: error initializing submodules: usage: git submodule [--quiet] add [-b <branch>] [-f|--force] [--name <name>] [--reference <repository>] [--] <repository> [<path>]
