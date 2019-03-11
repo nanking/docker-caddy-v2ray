@@ -40,7 +40,7 @@ GCP（服务端）
 ```bash
 ## 构建服务端镜像
 docker-compose build
-## 客户端启动方法
+## 服务端启动方法
 docker-compose up -d
 ## 客户端启动 方法 一
 docker-compose -f docker-compose-client.yml up -d
