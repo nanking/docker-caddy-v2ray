@@ -38,12 +38,15 @@ GCP（服务端）
 - 修改 docker-compose.yml 中 cloudflare 自己的信息
 - 运行脚本
 ```bash
-## build docker image
+## 构建服务端镜像
 docker-compose build
-## exec at server side
+## 客户端启动方法
 docker-compose up -d
-## exec at client side
-docker run -it --rm  -d -v $PWD/client:/etc/v2ray v2ray/official
+## 客户端启动 方法 一
+docker-compose -f docker-compose-client.yml up -d
+## 客户端启动 方法 二
+docker run -it --rm -p 1080:1080 -p 1082:1082  -d -v $PWD/client:/etc/v2ray v2ray/official
+
 ```
 ## 其他
 如果build Caddy时候出现  ERROR: error initializing submodules: usage: git submodule [--quiet] add [-b <branch>] [-f|--force] [--name <name>] [--reference <repository>] [--] <repository> [<path>]
