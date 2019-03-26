@@ -9,7 +9,7 @@ services:
     volumes:
       - ./server/config.json:/etc/v2ray/config.json
   caddy:
-    image: caddy
+    image: hugoho/caddy-with-cloudflare
     build:
       context: github.com/abiosoft/caddy-docker.git
       args:

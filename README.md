@@ -18,6 +18,9 @@ NO!NO!NO!容器化比较符合撸主口味
 因为Caddy继承了Let's Encrypt申请，不用再单独用 certbot 去申请了。
 记住需要mount Caddy 的$HOME/.caddy:/root/.caddy，因为Let’s Encrypt[限制](https://letsencrypt.org/docs/rate-limits/)了
 
+- 支持K8S吗
+K8S完美支持。
+
 ## 需要修改哪些
 因为V2RAY属于链式协议栈，大家可以根据自己小鸡情况自由编排，我这里只放出了最简单通用的配置。
 
@@ -36,9 +39,10 @@ GCP（服务端）
 
 ## 怎么使用
 - 修改 docker-compose.yml 中 cloudflare 自己的信息
+- 修改 Caddyfile 在cloudflare中的域名
 - 运行脚本
 ```bash
-## 构建服务端镜像
+## 构建服务端镜像 这步可以省略
 docker-compose build
 ## 服务端启动方法
 docker-compose up -d
