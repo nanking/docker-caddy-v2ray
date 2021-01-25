@@ -1,3 +1,13 @@
+## 最新
+依旧可用 2020-01-20
+
+
+## todo
+kubernetes yaml清单
+Dockerfile ci(解决 DockerHub 清理长期未使用)
+
+
+
 ## 感谢
 [@v2ray](https://github.com/v2ray/v2ray-core)
 [@Caddy](https://github.com/mholt/caddy)
